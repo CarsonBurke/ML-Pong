@@ -3,9 +3,8 @@ const gameWidth = 676,
 
     mapDimensions = 26,
 
-    unitTypes = ['ball', 'paddle']
+    unitTypes = ['ball', 'paddle'],
 
-terrainEl = document.getElementsByClassName('terrainParent')[0],
     unitsEl = document.getElementsByClassName('unitsParent')[0],
 
     game = new Game()

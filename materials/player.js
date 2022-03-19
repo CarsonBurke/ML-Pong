@@ -66,29 +66,7 @@ Player.prototype.getOptions = function() {
     const inputs = [],
         outputs = []
 
-    for (let i = 0; i < game.units.length; i++) {
 
-        const unit = game.units[i]
-
-        if (!unit) {
-
-            inputs.push({ name: i, value: i })
-            continue
-        }
-
-        inputs.push({ name: unit.type + i, value: i })
-
-        if (unit.owner != player.type) continue
-
-        if (typeof unit.getOptions != 'function') continue
-
-        unit.getOptions()
-
-        for (const z of unit.options) {
-
-            outputs.push({ name: z, unit: unit })
-        }
-    }
 
     return { inputs, outputs }
 }

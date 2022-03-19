@@ -1,14 +1,16 @@
-let playersTurn = 'black'
-
 function runEnv() {
 
-    game.tick++
-
-        let aliveKings = {}
+    game.tick += 1
 
     for (const playerType in game.players) {
 
         const player = game.players[playerType]
+
+        const paddle = Object.values(game.units.paddle).filter(paddle => paddle.owner == playerType)[0]
+
+        /* console.log(paddle) */
+
+        paddle.move(paddle.x, paddle.y + Math.random() * 10 - Math.random() * 10)
 
         /* if (player.network) player.network.visualsParent.classList.add('visualsParentHide')
 

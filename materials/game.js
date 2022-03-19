@@ -30,9 +30,9 @@ Game.prototype.init = function() {
 
 Game.prototype.initPlayers = function() {
 
-    game.players.white = new Player('left')
+    game.players.left = new Player('left')
 
-    game.players.black = new Player('right')
+    game.players.right = new Player('right')
 }
 
 Game.prototype.initUnits = function() {
@@ -43,18 +43,18 @@ Game.prototype.initUnits = function() {
 
     // Left
 
-    new Paddle(20, gameHeight / 2)
+    new Paddle(20, gameHeight / 2, 'left')
 
     // Right
 
-    new Paddle(gameWidth - 20, gameHeight / 2)
+    new Paddle(gameWidth - 20, gameHeight / 2, 'right')
 }
 
 Game.prototype.newMatch = function(looser, inputs, outputs) {
 
     game.tick = 0
 
-    const winner = game.players[looser.type == 'white' ? 'black' : 'white']
+    const winner = game.players[looser.type == 'left' ? 'right' : 'left']
 
     winner.network.learn()
     winner.score = 0

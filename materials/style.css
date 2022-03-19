@@ -45,7 +45,7 @@ body {
 
 .map {
     position: relative;
-    background: rgb(238, 239, 211);
+    background: rgb(247, 251, 255);
     box-shadow: rgba(0, 0, 0, 0.35) 0 20px 200px 0, rgba(0, 0, 0, 0.25) 0 4px 20px 0;
     border-radius: 8px;
     overflow: hidden;
@@ -62,23 +62,18 @@ body {
 
 .unit {
     position: absolute;
-    transition: all 0.3s;
 }
 
-.terrainParent {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+.ball {
+    border-radius: 100%;
+    background: black;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 0 15px 0;
 }
 
-.terrain {
-    position: absolute;
-}
-
-.terrainAlt {
-    background: rgb(118, 150, 86);
+.paddle {
+    border-radius: 8px;
+    background: black;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 0 15px 0;
 }
 
 

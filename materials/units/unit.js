@@ -1,51 +1,37 @@
 class Unit {
-    constructor(z, type, owner) {
+    constructor(type, x, y, width, height) {
 
         const unit = this
 
-        unit.z = z
-        unit.x = Math.floor(z / mapDimensions)
-        unit.y = Math.floor(z % mapDimensions)
+        unit.x = x - width / 2
+        unit.y = y - height / 2
 
         unit.type = type
-        unit.owner = owner
+        unit.ID = newID()
 
-        unit.lastMoves = []
-
-        unit.el = document.createElement('img')
-        unit.el.classList.add('unit', z)
+        unit.el = document.createElement('div')
+        unit.el.classList.add('unit', type, unit.ID)
         unitsEl.appendChild(unit.el)
 
-        unit.el.src = 'materials/images/' + type + owner + '.png'
+        unit.el.style.left = unit.x + 'px'
+        unit.el.style.top = unit.y + 'px'
 
-        unit.el.style.left = unit.x * (gameWidth / mapDimensions) + 'px'
-        unit.el.style.top = unit.y * (gameHeight / mapDimensions) + 'px'
+        unit.el.style.width = width + 'px'
+        unit.el.style.height = height + 'px'
 
-        unit.el.style.width = gameWidth / mapDimensions + 'px'
-        unit.el.style.height = gameHeight / mapDimensions + 'px'
-
-        game.units[z] = unit
+        game.units[type][unit.ID] = unit
     }
 }
 
-Unit.prototype.move = function(z) {
+Unit.prototype.move = function(x, y) {
 
     const unit = this
 
-    if (game.units[z]) game.units[z].delete()
+    unit.x = x
+    unit.y = y
 
-    game.units[unit.z] = undefined
-
-    unit.z = z
-    unit.x = Math.floor(z / mapDimensions)
-    unit.y = Math.floor(z % mapDimensions)
-
-    unit.lastMoves.push(z)
-
-    unit.el.style.left = unit.x * (gameWidth / mapDimensions) + 'px'
-    unit.el.style.top = unit.y * (gameHeight / mapDimensions) + 'px'
-
-    game.units[z] = unit
+    unit.el.style.left = unit.x + 'px'
+    unit.el.style.top = unit.y + 'px'
 }
 
 Unit.prototype.kill = function() {
@@ -53,47 +39,20 @@ Unit.prototype.kill = function() {
     const unit = this
 
     unit.el.remove()
-    unit.dead = true
+    delete game.units[unit.type][unit.ID]
 }
 
-Unit.prototype.delete = function() {
+Unit.prototype.isOutOfBounds = function(x, y) {
 
     const unit = this
 
-    unit.el.remove()
-    game.units[unit.z] = undefined
-}
+    if (x < 0 || x >= mapDimensions || y < 0 || y >= mapDimensions) return true
 
-Unit.prototype.searchByOffsets = function(offsetX, offsetY) {
+    unit.x = x
+    unit.y = y
 
-    const unit = this
+    unit.el.style.left = unit.x + 'px'
+    unit.el.style.top = unit.y + 'px'
 
-    const positions = []
-
-    let x = unit.x,
-        y = unit.y
-
-    while (1 == 1) {
-
-        x += offsetX
-        y += offsetY
-
-        if (x < 0 || x >= mapDimensions || y < 0 || y >= mapDimensions) break
-
-        const z = x * mapDimensions + y
-
-        const unitAtPos = game.units[z]
-
-        if (unitAtPos) {
-
-            if (unitAtPos.owner == unit.owner) break
-
-            positions.push(z)
-            break
-        }
-
-        positions.push(z)
-    }
-
-    return positions
+    return false
 }

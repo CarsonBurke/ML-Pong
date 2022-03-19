@@ -1,9 +1,18 @@
-const gameWidth = 500,
-    gameHeight = 500,
+const gameWidth = 676,
+    gameHeight = 676,
 
-    mapDimensions = 8,
+    mapDimensions = 26,
 
-    terrainEl = document.getElementsByClassName('terrainParent')[0],
+    unitTypes = ['ball', 'paddle']
+
+terrainEl = document.getElementsByClassName('terrainParent')[0],
     unitsEl = document.getElementsByClassName('unitsParent')[0],
 
     game = new Game()
+
+let ID = 0
+
+function newID() {
+
+    return ID++
+}

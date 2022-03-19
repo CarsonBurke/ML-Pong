@@ -6,18 +6,11 @@ function runEnv() {
 
         let aliveKings = {}
 
-    for (const unit of game.units) {
-
-        if (!unit) continue
-
-        if (unit.type == 'king') aliveKings[unit.owner] = true
-    }
-
     for (const playerType in game.players) {
 
         const player = game.players[playerType]
 
-        if (player.network) player.network.visualsParent.classList.add('visualsParentHide')
+        /* if (player.network) player.network.visualsParent.classList.add('visualsParentHide')
 
         if (playersTurn == playerType) continue
 
@@ -57,6 +50,6 @@ function runEnv() {
 
         playersTurn = player.type
 
-        break
+        break */
     }
 }

@@ -1,3 +1,3 @@
 game.init()
 
-setInterval(runEnv, 10)
+setInterval(runEnv, 100)

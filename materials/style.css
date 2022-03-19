@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    background: var(--foreground1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    --lightPurple: rgb(174, 0, 255);
+    --purple: rgb(123, 0, 224);
+    --darkPurple: rgb(83, 0, 151);
+    --lightRed: rgb(255, 0, 0);
+    --red: rgb(214, 0, 0);
+    --darkRed: rgb(151, 0, 0);
+    --lightBlue: rgb(0, 151, 238);
+    --blue: rgb(5, 80, 219);
+    --darkBlue: rgb(0, 64, 241);
+    --lightGreen: rgb(0, 255, 0);
+    --green: rgb(0, 212, 0);
+    --darkGreen: rgb(0, 184, 0);
+    background: rgb(48, 46, 42);
+}
+
+
+/*  */
+
+.hidden {
+    display: none;
+}
+
+
+/*  */
+
+.mapParent {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.map {
+    position: relative;
+    background: rgb(238, 239, 211);
+    box-shadow: rgba(0, 0, 0, 0.35) 0 20px 200px 0, rgba(0, 0, 0, 0.25) 0 4px 20px 0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.unitsParent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.unit {
+    position: absolute;
+    transition: all 0.3s;
+}
+
+.terrainParent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.terrain {
+    position: absolute;
+}
+
+.terrainAlt {
+    background: rgb(118, 150, 86);
+}
+
+
+/* Visuals */
+
+.visualsParent {
+    position: absolute;
+    right: 100px;
+    top: 10px;
+    display: flex;
+    pointer-events: none;
+}
+
+.visualsParentHide {
+    display: none;
+}
+
+.layerVisual {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.perceptronVisual {
+    background: rgb(28, 238, 0);
+    box-shadow: rgba(0, 0, 0, 0.3) 0 0 20px 0;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    margin: 5px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: black;
+    position: relative;
+    outline: 1.9px solid rgb(255, 255, 255);
+}
+
+.inputPerceptron {
+    background: rgb(255, 187, 0);
+}
+
+.outputPerceptron {
+    background: rgb(250, 15, 15);
+}
+
+.textVisual {
+    font-size: 14px;
+    color: rgb(255, 255, 255);
+    position: absolute;
+    width: fit-content;
+}
+
+.lineParent {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.line {
+    stroke-width: 1.5px;
+}
+
+.lineDisconnected {
+    opacity: 0;
+}

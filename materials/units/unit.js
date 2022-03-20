@@ -37,7 +37,7 @@ Unit.prototype.move = function(x, y) {
     unit.el.style.top = unit.y + 'px'
 }
 
-Unit.prototype.kill = function() {
+Unit.prototype.delete = function() {
 
     const unit = this
 

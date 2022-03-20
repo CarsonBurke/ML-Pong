@@ -50,11 +50,13 @@ Game.prototype.initUnits = function() {
     new Paddle(gameWidth - 20, gameHeight / 2, 'right')
 }
 
-Game.prototype.newMatch = function(looser, inputs, outputs) {
+Game.prototype.newMatch = function(looserType, inputs, outputs) {
 
     game.tick = 0
 
-    const winner = game.players[looser.type == 'left' ? 'right' : 'left']
+    const looser = game.players[looserType]
+
+    const winner = game.players[looserType == 'left' ? 'right' : 'left']
 
     winner.network.learn()
     winner.score = 0
@@ -66,11 +68,12 @@ Game.prototype.newMatch = function(looser, inputs, outputs) {
     looser.network = winner.network.clone(inputs, outputs)
     looser.score = 0
 
-    for (const unit of game.units) {
+    for (const type in game.units) {
 
-        if (!unit) continue
+        for (const unitID in game.units[type]) {
 
-        unit.delete()
+            game.units[type][unitID].delete()
+        }
     }
 
     game.initUnits()

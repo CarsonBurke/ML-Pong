@@ -1,3 +1,15 @@
+const inputs = [
+        { name: 'Ball x', value: 0 },
+        { name: 'Ball y', value: 0 },
+        { name: 'Paddle x', value: 0 },
+        { name: 'Paddle y', value: 0 },
+    ],
+
+    outputs = [
+        { name: 'Move up' },
+        { name: 'Move down' }
+    ]
+
 function runEnv() {
 
     game.tick += 1
@@ -10,7 +22,7 @@ function runEnv() {
 
         if (ball.x < 0 || ball.x + ball.width >= gameWidth) {
 
-            ball.horizontalDirection == 0 ? ball.horizontalDirection = 1 : ball.horizontalDirection = 0
+            ball.horizontalDirection == 0 ? game.newMatch('left', inputs, outputs) : game.newMatch('right', inputs, outputs)
         }
 
         if (ball.y < 0 || ball.y + ball.height >= gameHeight) {
@@ -32,19 +44,10 @@ function runEnv() {
 
         const paddle = Object.values(game.units.paddle).filter(paddle => paddle.owner == playerType)[0]
 
-        const inputs = [
-                { name: 'Ball x', value: ball.x },
-                { name: 'Ball y', value: ball.y },
-                { name: 'Paddle x', value: paddle.x },
-                { name: 'Paddle y', value: paddle.y },
-            ],
-
-            outputs = [
-                { name: 'Move up' },
-                { name: 'Move down' }
-            ]
-
-        if (!paddle) game.newMatch(player, inputs, outputs)
+        inputs[0].value = ball.x
+        inputs[1].value = ball.y
+        inputs[2].value = paddle.x
+        inputs[3].value = paddle.y
 
         if (!player.network) player.newNetwork(inputs, outputs)
 

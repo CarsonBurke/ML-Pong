@@ -1,7 +1,5 @@
 const inputs = [
-        { name: 'Ball x', value: 0 },
         { name: 'Ball y', value: 0 },
-        { name: 'Paddle x', value: 0 },
         { name: 'Paddle y', value: 0 },
     ],
 
@@ -15,6 +13,7 @@ function runEnv() {
     game.tick += 1
 
     const ball = Object.values(game.units.ball)[0]
+    const paddles = Object.values(game.units.paddle)
 
     manageBall()
 
@@ -30,6 +29,13 @@ function runEnv() {
             ball.verticalDirection == 0 ? ball.verticalDirection = 1 : ball.verticalDirection = 0
         }
 
+        for (const paddle of paddles) {
+
+            if (findDistance(ball.x - ball.width / 2, ball.y - ball.height / 2, paddle.x, paddle.y - paddle.height / 2) > 100) continue
+
+            ball.horizontalDirection == 0 ? ball.horizontalDirection = 1 : ball.horizontalDirection = 0
+        }
+
         const xChange = ball.horizontalDirection == 0 ? ball.speed * -1 : ball.speed,
             yChange = ball.verticalDirection == 0 ? ball.speed * -1 : ball.speed
 
@@ -42,12 +48,10 @@ function runEnv() {
 
         if (player.network) player.network.visualsParent.classList.add('visualsParentHide')
 
-        const paddle = Object.values(game.units.paddle).filter(paddle => paddle.owner == playerType)[0]
+        const paddle = paddles.filter(paddle => paddle.owner == playerType)[0]
 
-        inputs[0].value = ball.x
-        inputs[1].value = ball.y
-        inputs[2].value = paddle.x
-        inputs[3].value = paddle.y
+        inputs[0].value = ball.y
+        inputs[1].value = paddle.y
 
         if (!player.network) player.newNetwork(inputs, outputs)
 
@@ -66,11 +70,14 @@ function runEnv() {
 
         if (perceptronWithLargestValue.activateValue > 0) {
 
-            const yChange = lastLayerPerceptrons.indexOf(perceptronWithLargestValue) == 0 ? paddle.speed * -1 : paddle.speed
+            const yChange = perceptronWithLargestValue.name == 0 ? paddle.speed * -1 : paddle.speed
 
             if (paddle.isOutOfBounds(paddle.x, paddle.y + yChange)) return
 
             paddle.move(paddle.x, paddle.y + yChange)
         }
     }
+
+    document.getElementById('tick').innerText = game.tick
+    document.getElementById('games').innerText = game.games
 }

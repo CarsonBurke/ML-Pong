@@ -3,6 +3,8 @@ class Game {
 
         const game = this
 
+        game.games = 0
+
         game.players = {
             left: undefined,
             right: undefined
@@ -53,6 +55,7 @@ Game.prototype.initUnits = function() {
 Game.prototype.newMatch = function(looserType, inputs, outputs) {
 
     game.tick = 0
+    game.games += 1
 
     const looser = game.players[looserType]
 
@@ -60,7 +63,6 @@ Game.prototype.newMatch = function(looserType, inputs, outputs) {
 
     winner.network.learn()
     winner.score = 0
-    console.log('WIN: ' + winner.type)
 
     looser.network.visualsParent.remove()
     delete looser.network

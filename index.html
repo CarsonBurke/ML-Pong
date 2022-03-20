@@ -14,19 +14,51 @@
 
 <body>
 
-    <div class="mapParent">
+    <div class="displayParent">
 
-        <div class="map">
+        <div class="displayChild">
 
-            <div class="unitsParent"></div>
+            <div class="mapParent">
 
+                <div class="map">
+
+                    <div class="unitsParent"></div>
+
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="visualsParentParent">
+        <div class="displayChild">
+
+            <div class="statsParent">
+
+                <div class="statsChild">
+
+                    <h3 class="statsHeader">Tick: </h3>
+                    <h3 class="statsAmount" id="tick"></h3>
+
+                </div>
+                <div class="statsChild">
+
+                    <h3 class="statsHeader">Games: </h3>
+                    <h3 class="statsAmount" id="games"></h3>
+
+                </div>
+                <div class="statsChild">
+
+                    <input type="text" placeholder="speed" id="newSpeed">
+                    <button onclick="changeSpeed()">Change</button>
+
+                </div>
+
+            </div>
+
+            <div class="visualsParentParent">
 
 
 
+            </div>
+        </div>
     </div>
 
     <!-- JS imports -->

@@ -10,7 +10,12 @@ function runEnv() {
 
         /* console.log(paddle) */
 
-        paddle.move(paddle.x, paddle.y + Math.random() * 10 - Math.random() * 10)
+        const x = paddle.x,
+            y = paddle.y + Math.random() * 100 - Math.random() * 100
+
+        if (paddle.isOutOfBounds(x, y)) return
+
+        paddle.move(x, y)
 
         /* if (player.network) player.network.visualsParent.classList.add('visualsParentHide')
 

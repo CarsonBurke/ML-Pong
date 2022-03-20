@@ -68,12 +68,14 @@ body {
     border-radius: 100%;
     background: black;
     box-shadow: rgba(0, 0, 0, 0.25) 0 0 15px 0;
+    transition: all 0.1s;
 }
 
 .paddle {
     border-radius: 8px;
     background: black;
     box-shadow: rgba(0, 0, 0, 0.25) 0 0 15px 0;
+    transition: all 0.1s;
 }
 
 

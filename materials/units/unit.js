@@ -6,6 +6,9 @@ class Unit {
         unit.x = x - width / 2
         unit.y = y - height / 2
 
+        unit.width = width
+        unit.height = height
+
         unit.type = type
         unit.ID = newID()
 
@@ -46,7 +49,7 @@ Unit.prototype.isOutOfBounds = function(x, y) {
 
     const unit = this
 
-    if (x < 0 || x >= mapDimensions || y < 0 || y >= mapDimensions) return true
+    if (x < 0 || x + unit.width >= gameWidth || y < 0 || y + unit.height >= gameHeight) return true
 
     unit.x = x
     unit.y = y

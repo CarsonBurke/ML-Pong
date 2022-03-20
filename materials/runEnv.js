@@ -31,7 +31,7 @@ function runEnv() {
 
         for (const paddle of paddles) {
 
-            if (findDistance(ball.x - ball.width / 2, ball.y - ball.height / 2, paddle.x, paddle.y - paddle.height / 2) > 100) continue
+            if (!isInside(paddle, ball)) continue
 
             ball.horizontalDirection == 0 ? ball.horizontalDirection = 1 : ball.horizontalDirection = 0
         }
@@ -50,8 +50,8 @@ function runEnv() {
 
         const paddle = paddles.filter(paddle => paddle.owner == playerType)[0]
 
-        inputs[0].value = ball.y
-        inputs[1].value = paddle.y
+        inputs[0].value = ball.y + ball.width / 2
+        inputs[1].value = paddle.y + paddle.width / 2
 
         if (!player.network) player.newNetwork(inputs, outputs)
 

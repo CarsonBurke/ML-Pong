@@ -1,7 +1,5 @@
-const gameWidth = 676,
-    gameHeight = 676,
-
-    mapDimensions = 26,
+const gameWidth = 800,
+    gameHeight = 600,
 
     unitTypes = ['ball', 'paddle'],
 
@@ -19,14 +17,12 @@ function newID() {
     return ID++
 }
 
-function findDistance(x1, y1, x2, y2) {
+function isInside(unit1, unit2) {
 
-    // Configure positions
+    if (unit1.x + unit1.width >= unit2.x &&
+        unit1.x <= unit2.x + unit2.width &&
+        unit1.y + unit1.height >= unit2.y &&
+        unit1.y <= unit2.y + unit2.height) return true
 
-    const xDifference = x1 - x2
-    const yDifference = y1 - y2
-
-    // Find range using pythagorus and inform it
-
-    return Math.floor(Math.sqrt(Math.pow(xDifference, 2) + Math.pow(yDifference, 2)))
+    return false
 }

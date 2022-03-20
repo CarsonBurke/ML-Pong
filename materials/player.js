@@ -58,15 +58,3 @@ Player.prototype.newNetwork = function(inputs, outputs) {
 
     player.network = network
 }
-
-Player.prototype.getOptions = function() {
-
-    const player = this
-
-    const inputs = [],
-        outputs = []
-
-
-
-    return { inputs, outputs }
-}

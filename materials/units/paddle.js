@@ -6,5 +6,6 @@ class Paddle extends Unit {
         const paddle = this
 
         paddle.owner = owner
+        paddle.speed = 3
     }
 }

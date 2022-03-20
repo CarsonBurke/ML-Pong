@@ -2,34 +2,49 @@ function runEnv() {
 
     game.tick += 1
 
+    const ball = Object.values(game.units.ball)[0]
+
+    manageBall()
+
+    function manageBall() {
+
+        if (ball.x < 0 || ball.x + ball.width >= gameWidth) {
+
+            ball.horizontalDirection == 0 ? ball.horizontalDirection = 1 : ball.horizontalDirection = 0
+        }
+
+        if (ball.y < 0 || ball.y + ball.height >= gameHeight) {
+
+            ball.verticalDirection == 0 ? ball.verticalDirection = 1 : ball.verticalDirection = 0
+        }
+
+        const xChange = ball.horizontalDirection == 0 ? ball.speed * -1 : ball.speed,
+            yChange = ball.verticalDirection == 0 ? ball.speed * -1 : ball.speed
+
+        ball.move(ball.x + xChange, ball.y + yChange)
+    }
+
     for (const playerType in game.players) {
 
         const player = game.players[playerType]
 
+        if (player.network) player.network.visualsParent.classList.add('visualsParentHide')
+
         const paddle = Object.values(game.units.paddle).filter(paddle => paddle.owner == playerType)[0]
 
-        /* console.log(paddle) */
+        const inputs = [
+                { name: 'Ball x', value: ball.x },
+                { name: 'Ball y', value: ball.y },
+                { name: 'Paddle x', value: paddle.x },
+                { name: 'Paddle y', value: paddle.y },
+            ],
 
-        const x = paddle.x,
-            y = paddle.y + Math.random() * 100 - Math.random() * 100
+            outputs = [
+                { name: 'Move up' },
+                { name: 'Move down' }
+            ]
 
-        if (paddle.isOutOfBounds(x, y)) return
-
-        paddle.move(x, y)
-
-        /* if (player.network) player.network.visualsParent.classList.add('visualsParentHide')
-
-        if (playersTurn == playerType) continue
-
-        const { inputs, outputs } = player.getOptions()
-
-        if (game.tick > 200) {
-
-            game.newMatch(player, inputs, outputs)
-            break
-        }
-
-        if (!aliveKings[playerType]) game.newMatch(player, inputs, outputs)
+        if (!paddle) game.newMatch(player, inputs, outputs)
 
         if (!player.network) player.newNetwork(inputs, outputs)
 
@@ -39,24 +54,20 @@ function runEnv() {
 
         // Find last layer
 
-        const lastLayer = player.network.layers[Object.keys(player.network.layers).length - 1]
+        const lastLayer = player.network.layers[Object.keys(player.network.layers).length - 1],
+            lastLayerPerceptrons = Object.values(lastLayer.perceptrons)
 
         // Sort perceptrons by activateValue and get the largest one
 
-        const perceptronWithLargestValue = Object.values(lastLayer.perceptrons).sort((a, b) => a.activateValue - b.activateValue).reverse()[0]
-
-        //
+        const perceptronWithLargestValue = lastLayerPerceptrons.sort((a, b) => a.activateValue - b.activateValue).reverse()[0]
 
         if (perceptronWithLargestValue.activateValue > 0) {
 
-            const output = outputs[perceptronWithLargestValue.name]
+            const yChange = lastLayerPerceptrons.indexOf(perceptronWithLargestValue) == 0 ? paddle.speed * -1 : paddle.speed
 
-            output.unit.move(output.name)
-            output.unit.firstMove = false
+            if (paddle.isOutOfBounds(paddle.x, paddle.y + yChange)) return
+
+            paddle.move(paddle.x, paddle.y + yChange)
         }
-
-        playersTurn = player.type
-
-        break */
     }
 }

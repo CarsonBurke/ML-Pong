@@ -124,7 +124,7 @@ NeuralNetwork.prototype.createVisuals = function(inputs, outputs) {
 
     visualsParent.style.width = Object.keys(network.layers).length * network.layerVisualWidth + "px"
 
-    document.body.appendChild(visualsParent)
+    document.getElementsByClassName('visualsParentParent')[0].appendChild(visualsParent)
     network.visualsParent = visualsParent
 
     // Create svg
@@ -348,7 +348,7 @@ NeuralNetwork.prototype.updateVisuals = function() {
         for (const perceptronName in layer.perceptrons) {
 
             const perceptron = layer.perceptrons[perceptronName]
-            
+
             // Update perceptron's visuals
 
             perceptron.updateVisual()

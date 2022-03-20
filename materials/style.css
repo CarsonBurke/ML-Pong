@@ -9,7 +9,7 @@ body {
     align-items: center;
     justify-content: center;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     --lightPurple: rgb(174, 0, 255);
     --purple: rgb(123, 0, 224);
     --darkPurple: rgb(83, 0, 151);
@@ -23,6 +23,7 @@ body {
     --green: rgb(0, 212, 0);
     --darkGreen: rgb(0, 184, 0);
     background: rgb(48, 46, 42);
+    --backgroundAlt: rgb(58, 56, 51);
 }
 
 
@@ -36,7 +37,7 @@ body {
 /*  */
 
 .mapParent {
-    width: 100vw;
+    width: fit-content;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -67,24 +68,32 @@ body {
 .ball {
     border-radius: 100%;
     background: black;
-    box-shadow: rgba(0, 0, 0, 0.25) 0 0 15px 0;
+    box-shadow: rgba(0, 0, 0, 0.5) 0 0 8px 0;
     transition: all 0.1s;
 }
 
 .paddle {
     border-radius: 8px;
     background: black;
-    box-shadow: rgba(0, 0, 0, 0.25) 0 0 15px 0;
+    box-shadow: rgba(0, 0, 0, 0.5) 0 0 8px 0;
     transition: all 0.1s;
 }
 
 
 /* Visuals */
 
+.visualsParentParent {
+    margin: 0 20px;
+    padding: 0 80px;
+    gap: 160px;
+    display: flex;
+    background: var(--backgroundAlt);
+    border-radius: 8px;
+}
+
 .visualsParent {
-    position: absolute;
-    right: 100px;
-    top: 10px;
+    position: relative;
+    width: fit-content;
     display: flex;
     pointer-events: none;
 }

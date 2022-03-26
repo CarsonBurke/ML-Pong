@@ -3,91 +3,126 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="WebGine">
+    <meta name="description" content="WebGine">
+    <meta name="theme-color" content="rgb(51, 48, 54)">
+    <meta property="og:image" content="materials/images/webGenIcon.png" />
 
-    <link rel="stylesheet" type="text/css" href="materials/style.css">
+    <link rel="apple-touch-icon" href="materials/images/webGineIcon.png">
+    <link rel="icon" href="materials/images/webGineIcon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link href="materials/style.css" rel="stylesheet" type="text/css" />
 
-    <link rel="icon" href="materials/images/gameIcon.png" type="image/png">
-    <title>Machine Learning Chess</title>
+    <title>WebGine</title>
 </head>
 
 <body>
 
-    <div class="displayParent">
+    <div class="envParent">
+        <canvas class="env">
 
-        <div class="displayChild">
+        </canvas>
+        <div class="displayParent">
+            <div class="displayChild UIParent">
 
-            <div class="mapParent">
+                <h1 class="envTitle"><img class="envIcon" src="materials/images/webGineIcon.png" />WebGine</h1>
 
-                <div class="map">
+                <div class="statsParent">
 
-                    <div class="unitsParent"></div>
+                    <div class="statsChild">
 
+                        <h3 class="statsHeader">Tick: </h3>
+                        <h3 class="statsAmount" id="tick">0</h3>
+
+                    </div>
+                    <div class="statsChild">
+
+                        <h3 class="statsHeader">Round Tick: </h3>
+                        <h3 class="statsAmount" id="roundTick">0</h3>
+
+                    </div>
+                    <div class="statsChild">
+
+                        <h3 class="statsHeader">Generation: </h3>
+                        <h3 class="statsAmount" id="generation">0</h3>
+
+                    </div>
+                    <div class="statsChild">
+
+                        <h3 class="statsHeader">Top Fitness: </h3>
+                        <h3 class="statsAmount" id="topFitness">0</h3>
+
+                    </div>
+                    <div class="statsChild">
+
+                        <h3 class="statsHeader">Current Fitness: </h3>
+                        <h3 class="statsAmount" id="currentFitness">0</h3>
+
+                    </div>
+                    <div class="statsChild">
+
+                        <h3 class="statsHeader">Games: </h3>
+                        <h3 class="statsAmount" id="gamesAmount">0</h3>
+
+                    </div>
+                    <div class="statsChild">
+
+                        <h3 class="statsHeader">Speed: </h3>
+                        <h3 class="statsAmount" id="speed">0</h3>
+
+                    </div>
                 </div>
+                <form class="changeParent" id="speedForm">
+
+                    <input class="changeInput" type="number" placeholder="Speed" id="newSpeed">
+                    <button class="changeButton waveButton" id="changeSpeed">Change</button>
+
+                </form>
             </div>
-        </div>
+            <div class="displayChild networkManagerParent">
 
-        <div class="displayChild">
-
-            <div class="statsParent">
-
-                <div class="statsChild">
-
-                    <h3 class="statsHeader">Tick: </h3>
-                    <h3 class="statsAmount" id="tick"></h3>
-
+                <div class="networkGuide">
+                    <div class="colorGuideParent">
+                        <div class="colorGuideColor" id="colorGuideActivation"></div>
+                        <h3 class="colorGuideText">Positive</h3>
+                    </div>
+                    <div class="colorGuideParent">
+                        <div class="colorGuideColor" id="colorGuideNegative"></div>
+                        <h3 class="colorGuideText">Negative</h3>
+                    </div>
                 </div>
-                <div class="statsChild">
-
-                    <h3 class="statsHeader">Games: </h3>
-                    <h3 class="statsAmount" id="games"></h3>
-
-                </div>
-                <div class="statsChild">
-
-                    <input type="text" placeholder="speed" id="newSpeed">
-                    <button onclick="changeSpeed()">Change</button>
-
-                </div>
-
-            </div>
-
-            <div class="visualsParentParent">
-
-
-
             </div>
         </div>
     </div>
 
-    <!-- JS imports -->
+    <!-- Sprites -->
+
+    <img src="materials/images/ball.png" class="sprite" id="ball">
+    <img src="materials/images/paddle.png" class="sprite" id="paddle">
+
+    <!-- JS Imports -->
 
     <!-- Nueral Net -->
 
     <script src="materials/neuralNetwork/networkManager.js"></script>
-    <script src="materials/neuralNetwork/networkComponents.js"></script>
-    <script src="materials/neuralNetwork/networkFunctions.js"></script>
-    <script src="materials/neuralNetwork/layerFunctions.js"></script>
-    <script src="materials/neuralNetwork/perceptronFunctions.js"></script>
-    <script src="materials/neuralNetwork/lineFunctions.js"></script>
+    <script src="materials/neuralNetwork/network.js"></script>
 
     <!-- Game -->
 
-    <script src="materials/runEnv.js"></script>
+    <script src="materials/env/env.js"></script>
 
-    <script src="materials/game.js"></script>
-    <script src="materials/globalVars.js"></script>
+    <script src="materials/game/game.js"></script>
+    <script src="materials/game/player.js"></script>
+    <script src="materials/game/gameObj.js"></script>
+    <script src="materials/game/ball.js"></script>
+    <script src="materials/game/paddle.js"></script>
+    <script src="materials/game/pos.js"></script>
 
-    <script src="materials/player.js"></script>
-
-    <script src="materials/units/unit.js"></script>
-    <script src="materials/units/ball.js"></script>
-    <script src="materials/units/paddle.js"></script>
+    <!-- General -->
 
     <script src="materials/script.js"></script>
-    <script src="materials/scroller.js"></script>
-
+    <script src="materials/wave.js"></script>
 </body>
 
 </html>

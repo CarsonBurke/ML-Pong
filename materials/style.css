@@ -1,130 +1,129 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
-body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-    background: var(--foreground1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    flex-direction: row;
-    color: white;
-    --lightPurple: rgb(174, 0, 255);
-    --purple: rgb(123, 0, 224);
-    --darkPurple: rgb(83, 0, 151);
-    --lightRed: rgb(255, 0, 0);
-    --red: rgb(214, 0, 0);
-    --darkRed: rgb(151, 0, 0);
-    --lightBlue: rgb(0, 151, 238);
-    --blue: rgb(5, 80, 219);
-    --darkBlue: rgb(0, 64, 241);
-    --lightGreen: rgb(0, 255, 0);
-    --green: rgb(0, 212, 0);
-    --darkGreen: rgb(0, 184, 0);
-    background: rgb(48, 46, 42);
-    --backgroundAlt: rgb(58, 56, 51);
+/*IMPORTANT*/
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'), url(https://example.com/MaterialIcons-Regular.woff) format('woff'), url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
 }
 
+body {
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    font-family: "Raleway";
+    background: var(--tertiaryShade);
+    color: white;
+    --primary: rgb(211, 13, 13);
+    --primaryShade: white;
+    --secondaryShade: rgb(51, 48, 54);
+    --tertiaryShade: rgb(32, 32, 39);
+}
 
-/*  */
+*::-webkit-scrollbar {
+    width: 14px;
+    background: var(--secondaryShade);
+}
 
-.hidden {
+*::-webkit-scrollbar-thumb {
+    background: var(--secondaryShade);
+    box-shadow: rgba(255, 255, 255, 0.2) inset 0 0 0 1000px;
+    width: 100%;
+    transition: all 0.3s;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: #36394580;
+    box-shadow: rgba(255, 255, 255, 0.4) inset 0 0 0 1000px;
+}
+
+* {
+    all: unset;
+}
+
+title {
     display: none;
 }
 
-input {
-    padding: 10px;
-    border: none;
-    outline: none;
-    border-radius: 8px;
-    transition: all 0.3s;
-    font-size: 18px;
-    width: 60px;
+style {
+    display: none;
 }
 
-input:hover {
-    box-shadow: inset rgba(0, 0, 0, 0.2) 0 0 0 10000px;
-}
-
-button {
-    padding: 10px;
-    border: none;
-    outline: none;
-    border-radius: 8px;
-    transition: all 0.3s;
-    font-size: 18px;
-    background: var(--lightBlue);
-    color: white;
-}
-
-button:hover {
-    box-shadow: inset rgba(0, 0, 0, 0.2) 0 0 0 10000px;
+div {
+    display: block;
 }
 
 
-/*  */
+/* Game */
+
+.sprite {
+    display: none;
+}
+
+
+/* Content */
+
+.envParent {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    min-height: calc(100vh - 40px);
+    background-color: var(--secondaryShade);
+    gap: 20px;
+    position: relative;
+}
+
+.env {
+    box-shadow: rgba(0, 0, 0, 0.3) 0 0 80px 0;
+    background: var(--tertiaryShade);
+    z-index: 1;
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+}
 
 .displayParent {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     gap: 20px;
 }
 
 .displayChild {
+    padding: 20px;
+    gap: 20px;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    gap: 20px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0 0 80px 0;
+    background: var(--tertiaryShade);
 }
 
-.mapParent {
-    width: fit-content;
-    height: 100vh;
+.envIcon {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    box-shadow: rgba(0, 0, 0, 0.3) 0 0 20px 0;
+}
+
+.envTitle {
+    gap: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.map {
-    position: relative;
-    background: rgb(247, 251, 255);
-    box-shadow: rgba(0, 0, 0, 0.35) 0 20px 200px 0, rgba(0, 0, 0, 0.25) 0 4px 20px 0;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.unitsParent {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 2;
-}
-
-.unit {
-    position: absolute;
-}
-
-.ball {
-    border-radius: 100%;
-    background: black;
-    box-shadow: rgba(0, 0, 0, 0.5) 0 0 8px 0;
-}
-
-.paddle {
-    border-radius: 8px;
-    background: black;
-    box-shadow: rgba(0, 0, 0, 0.5) 0 0 8px 0;
+    font-size: 35px;
+    font-weight: 800;
+    text-align: center;
+    letter-spacing: 1px;
+    user-select: none;
 }
 
 .statsParent {
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    gap: 5px;
+    justify-content: center;
 }
 
 .statsChild {
@@ -132,77 +131,181 @@ button:hover {
     gap: 10px;
 }
 
+.statsChild :nth-child(even) {
+    text-align: left;
+}
 
-/* Visuals */
+.statsChild :nth-child(odd) {
+    text-align: right;
+}
 
-.visualsParentParent {
-    padding: 0 80px;
-    gap: 160px;
+.statsHeader {
+    font-weight: 500;
+    width: 50%;
+}
+
+.statsAmount {
+    font-weight: 200;
+    width: 50%;
+}
+
+.changeParent {
     display: flex;
-    background: var(--backgroundAlt);
-    border-radius: 8px;
+    justify-content: center;
+    border-radius: 30px;
 }
 
-.visualsParent {
-    position: relative;
-    width: fit-content;
-    display: flex;
-    pointer-events: none;
+.changeInput {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    padding: 6px;
+    padding-left: 15px;
+    font-size: 16px;
+    width: 130px;
+    border: var(--secondaryShade) 2px solid;
+    user-select: none;
+    transition: all 0.3s;
 }
 
-.visualsParentHide {
-    display: none;
+.changeInput::placeholder {
+    color: rgba(255, 255, 255, 0.6);
 }
 
-.layerVisual {
-    width: 100%;
+.changeInput:hover {
+    box-shadow: rgba(0, 0, 0, 0.3) 0 4px 20px 0;
+}
+
+.changeInput:focus {
+    box-shadow: rgba(0, 0, 0, 0.3) 0 12px 20px 0;
+}
+
+.changeButton {
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background-color: var(--secondaryShade);
+    padding: 8px 20px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s;
+}
+
+.changeButton:hover {
+    box-shadow: rgba(0, 0, 0, 0.3) 0 4px 20px 0;
+}
+
+.changeButton:focus {
+    box-shadow: rgba(0, 0, 0, 0.3) 0 12px 20px 0;
+}
+
+
+/* Network Visuals */
+
+.networkManagerParent {
+    padding: 20px;
+    background: var(--tertiaryShade);
+    box-shadow: rgba(0, 0, 0, 0.3) 0 0 40px 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 20px;
 }
 
-.perceptronVisual {
-    background: rgb(28, 238, 0);
-    box-shadow: rgba(0, 0, 0, 0.3) 0 0 20px 0;
-    border-radius: 100%;
+.networkGuide {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: var(--secondaryShade);
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 15px;
+}
+
+.colorGuideParent {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.colorGuideColor {
+    width: 15px;
+    height: 15px;
+}
+
+.networkParent {
+    display: flex;
+    gap: 20px;
+    position: relative;
+    justify-items: center;
+    align-items: center;
+    width: fit-content;
+    user-select: none;
+}
+
+.networkParentHide {
+    display: none;
+}
+
+.perceptronLayer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.perceptronLayer div {
+    z-index: 1;
     width: 50px;
     height: 50px;
-    margin: 5px 0;
+    border-radius: 100%;
+    background: black;
+    color: rgb(255, 255, 255);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 16px;
-    color: black;
-    position: relative;
-    outline: 1.9px solid rgb(255, 255, 255);
+    font-weight: 500;
+    border: 2px solid transparent;
+    overflow: hidden;
 }
 
-.inputPerceptron {
-    background: rgb(255, 187, 0);
+.inputLayer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
-.outputPerceptron {
-    background: rgb(250, 15, 15);
+.inputLayer p {
+    max-width: 200px;
+    font-weight: 500;
+    height: 50px;
+    line-height: 50px;
 }
 
-.textVisual {
-    font-size: 14px;
-    color: rgb(255, 255, 255);
+.descriptionLayer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.inputDescriptionLayer p {
+    text-align: right;
+}
+
+.descriptionLayer p {
+    max-width: 200px;
+    font-weight: 500;
+    height: 50px;
+    line-height: 50px;
+}
+
+.linesParent {
     position: absolute;
-    width: fit-content;
-}
-
-.lineParent {
-    position: absolute;
-    height: 100%;
     width: 100%;
+    height: 100%;
+    z-index: 0;
 }
 
-.line {
-    stroke-width: 1.5px;
-}
-
-.lineDisconnected {
-    opacity: 0;
+.linesParent line {
+    stroke-width: 2px;
 }

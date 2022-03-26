@@ -1,29 +1,55 @@
-game.init()
+env.init()
 
-function changeSpeed() {
+const runners = []
 
-    speedMultiplier = document.getElementById('newSpeed').value || speedMultiplier
+class Runner {
+    constructor() {
 
-    let i = 0
+        const runner = this
 
-    while (i < speedMultiplier) {
+        runners.shift()
 
-        runTick()
+        runner.ID = env.newID()
 
-        async function runTick() {
-
-            while (1 == 1) {
-
-                await timeout(speedMultiplier - 1000)
-
-                runEnv()
-            }
-        }
-
-        i++
+        runners.push(runner.ID)
     }
 }
 
-function timeout(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+Runner.prototype.run = function() {
+
+    const runner = this
+
+    let i = env.speed
+
+    while (i > 0) {
+
+        setInterval(function() {
+
+            if (!runners.includes(runner.ID)) return
+
+            env.run()
+
+        }, 1000 - env.speed)
+
+        i--
+    }
+}
+
+document.getElementById('changeSpeed').addEventListener('click', changeSpeed)
+
+changeSpeed()
+
+function changeSpeed() {
+
+    env.speed = parseInt(document.getElementById('newSpeed').value) || env.speed
+
+    const runner = new Runner()
+    runner.run()
+}
+
+document.getElementById('speedForm').addEventListener('submit', stopRefresh)
+
+function stopRefresh(event) {
+
+    event.preventDefault()
 }

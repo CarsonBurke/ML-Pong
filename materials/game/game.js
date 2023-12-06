@@ -20,11 +20,18 @@ Game.prototype.init = function(inputs, outputs, weightLayers, activationLayers) 
 
     /* new Player('person', game.ID) */
 
-    // Create x number of units
+    // Create a ball
 
-    for (let i = 0; i < 100; i++) {
+    const ballWidth = 19,
+        ballHeight = 19
 
-        new ExampleUnit('example', game.ID, Object.keys(game.players)[0], 10, 10, 30, 30, inputs, outputs, weightLayers, activationLayers)
+    new Ball(game.ID, Object.keys(game.players)[0], env.width / 2 + ballWidth, env.height / 2 + ballHeight, ballWidth, ballHeight)
+
+    // Create x number of paddles
+
+    for (let i = 0; i < 2; i++) {
+
+        new Paddle(game.ID, Object.keys(game.players)[i], 10, 10, 4, 68, inputs, outputs, weightLayers, activationLayers)
     }
 }
 

@@ -7,5 +7,18 @@ class Paddle extends GameObject {
 
         paddle.owner = owner
         paddle.speed = 3
+        paddle.fitness = 0
+
+        if (weightLayers && activationLayers) {
+
+            exampleUnit.network = new NeuralNetwork(weightLayers, activationLayers)
+
+        } else {
+
+            exampleUnit.network = new NeuralNetwork()
+            exampleUnit.network.construct(inputs.length, outputs.length)
+        }
+
+        exampleUnit.network.learn()
     }
 }
